@@ -51,8 +51,6 @@ for result in result_list:
 
 info_request = input("Enter the name of the monster you would like information on:")
 
-
-
 for result in result_list:
 	if info_request.lower() == result["name"].lower():
 		the_chosen_one = result
