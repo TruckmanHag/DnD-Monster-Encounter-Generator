@@ -14,8 +14,6 @@ avg_level = int(input("What is the aproximate average level of your party?"))
 
 #   Using the above inputs, generate a number to search for monsters
 #	with appropriate Challenge Rating for the party in the dictionary
-
-
 if player_count > 5:
 	CR_Balance = avg_level + (player_count - 5)
 elif player_count >= 3 and player_count <= 5:
@@ -30,6 +28,7 @@ try:
 	monsters = open("5e_Monsters.json", "r")
 except:
 	print("Error reading '5e_Monsters' file")
+
 #	Reading the file
 monster_list = json.loads(monsters.read())
 
@@ -46,13 +45,14 @@ for amonster in monster_list:
 	if amonster["challenge_rating"] == CR_Balance:
 		result_list.append(amonster)
 
+#   Print the names and challenge ratings of the monsters
+#   that have the right CR_Balance
 for result in result_list:
 	print(result["name"],result["challenge_rating"])
 
+#   Ask for a specific monster and print that monster's details
 info_request = input("Enter the name of the monster you would like information on:")
-
 for result in result_list:
 	if info_request.lower() == result["name"].lower():
 		the_chosen_one = result
-
 print(the_chosen_one)
