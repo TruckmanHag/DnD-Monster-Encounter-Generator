@@ -8,7 +8,7 @@ player_count = int(input("How many players do you have?"))
 
 avg_level = int(input("What is the aproximate average level of your party?"))
 #	Uncomment this next line when ready to code it
-#monster_num = int(input("How many monsters would you prefer, if a specific amount?"))
+monster_num = int(input("How many monsters would you prefer, if a specific amount?"))
 
 
 
@@ -42,6 +42,9 @@ result_list = []
 #	results to result_list
 
 for amonster in monster_list:
+	if monster_num > 1:
+		if amonster["challenge_rating"] == (CR_Balance//monster_num):
+			result_list.append(amonster)
 	if amonster["challenge_rating"] == CR_Balance:
 		result_list.append(amonster)
 
