@@ -1,15 +1,28 @@
 import json
+import tkinter
+
+# Error catching for the user inputs
+def get_pos_num(st):
+	isNotValid = True
+	while isNotValid:
+		try:
+			num = int(input(st))
+			if num < 1:
+				print("Enter a positive integer.")
+				num = int(input(st))
+			else:
+				isNotValid = False
+		except:
+			print("Enter an integer.")
+	return num
 
 #	Initialize the number of players and their level, and
-#	how many mosters they if would like
+#	how many mosters if they would like
+player_count = get_pos_num("How many players do you have?")
 
-#TO DO: Create error catch for all three inputs
-player_count = int(input("How many players do you have?"))
+avg_level = get_pos_num("What is the aproximate average level of your party?")
 
-avg_level = int(input("What is the aproximate average level of your party?"))
-#	Uncomment this next line when ready to code it
-monster_num = int(input("How many monsters would you prefer, if a specific amount?"))
-
+monster_num = get_pos_num("How many monsters would you prefer, if a specific amount?")
 
 
 #   Using the above inputs, generate a number to search for monsters
@@ -33,7 +46,7 @@ except:
 monster_list = json.loads(monsters.read())
 
 #	Create a list to add results from the balancing math
-#	and the monster monster_list
+#	and the monster_list
 
 result_list = []
 
@@ -58,4 +71,4 @@ info_request = input("Enter the name of the monster you would like information o
 for result in result_list:
 	if info_request.lower() == result["name"].lower():
 		the_chosen_one = result
-print(the_chosen_one)
+print(json.dumps(the_chosen_one, indent = 2))
